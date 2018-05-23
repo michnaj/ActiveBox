@@ -1,0 +1,426 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans')
+@import url('https://fonts.googleapis.com/css?family=Raleway')
+@import url('https://fonts.googleapis.com/css?family=Cardo')
+
+//variables
+$divider: 30px
+
+// COLOR variables
+$text-color: #6c7279
+$heading-color: #2d3033
+$bg-color: #fff
+$menu-text-color: rgba(255,255,255,0.75)
+$ab-special: #2b2e4a
+$ab-red: #e84545
+$ab-grey: #c6cacc
+$ab-violet: #53354a
+$facebook-color: #3b5998
+$twitter-color: #00aced
+$linkedin-color: #0077b5
+$bottom-bg: #3a3e64
+$footer-bg: #313454
+$footer-color: #808080
+// FONT variables
+$font-primary: 'Raleway', sans-serif
+$font-secondary: 'Open Sans', sans-serif
+$font-cite: 'Cardo', serif
+
+// MEDIA QUERIES variables
+$oldpc: "(max-width: 1199px)"
+$tablets: "(max-width: 991px)"
+$phones: "(max-width: 767px)"
+$extrasmall: "(max-width: 479px)"
+
+// MIXINS
+=border-radius($radius)
+  -webkit-border-radius: $radius
+  -moz-border-radius:    $radius
+  -ms-border-radius:     $radius
+  border-radius:         $radius
+=transition($transition)
+  -webkit-transition: $transition
+  -moz-transition:    $transition
+  transition:         $transition
+=translate($x, $y)
+  -ms-transform:      translate($x, $y)
+  -webkit-transform:  translate($x, $y)
+  transform:          translate($x, $y)
+=scale($x,$y)
+  -webkit-transform:  scale($x, $y)
+  -moz-transform:     scale($x, $y)
+  -ms-transform:      scale($x, $y)
+  transform:          scale($x, $y)
+=grad-linear($dir: left, $col1: #333, $col2: #333)
+  background: darken($col1, 20%)
+  background: -webkit-linear-gradient($dir, $col1, $col2)
+  background: -o-linear-gradient($dir, $col1, $col2)
+  background: -moz-linear-gradient($dir, $col1, $col2)
+  background: linear-gradient($dir, $col1, $col2)
+
+// HELP variables
+%wh100
+  width: 100%
+  height: 100%
+%mp0
+  margin: 0
+  padding: 0
+%social-media-menu
+  list-style-type: none
+  @extend %mp0
+  li
+    display: inline-block
+    width: 40px
+    height: 40px
+    border: 1px solid $ab-grey
+    text-align: center
+    margin-right: 10px
+    +transition(0.3s ease-in-out)
+    &:last-of-type
+      margin-right: 0
+    a
+      display: block
+      color: $ab-grey
+      +transition(0.3s ease-in-out)
+      .fa
+        line-height: 40px
+    &:hover
+      +scale(1.2,1.2)
+    &.facebook:hover
+      border-color: $facebook-color
+      a
+        color: $facebook-color
+    &.twitter:hover
+      border-color: $twitter-color
+      a
+        color: $twitter-color
+    &.linkedin:hover
+      border-color: $linkedin-color
+      a
+        color: $linkedin-color
+
+// GLOBAL styles
+*
+  box-sizing: border-box
+
+.clearfix
+  &:before,
+  &:after
+    content: ""
+    display: table
+    clear: both
+
+body
+  margin: 0
+  font-family: $font-primary
+  color: $text-color
+  background: $bg-color
+  font-weight: 400
+.row
+  margin: 0
+h1, h2, h3, h4
+  color: $heading-color
+.ab-btn
+  +grad-linear(bottom, darken($ab-red, 25%), darken($ab-red, 10%))
+  text-transform: uppercase
+  padding-left: 40px
+  padding-right: 40px
+  margin-top: $divider
+  +border-radius(2px)
+  +transition(0.4s)
+  &:hover
+    color: white
+    +scale(1.2,1.2)
+
+/* JUMBOTRON */
+.ab-jumbotron
+  @extend %mp0
+  height: 100vh
+  background: url(../images/heading-bg.jpg) center
+  background-size: cover
+  position: relative
+  &::before
+    content: ""
+    position: absolute
+    background: rgba(43, 46, 74, 0.95)
+    @extend %wh100
+  .ab-navbar
+    background: transparent
+    border: none
+    padding: $divider 0
+    font-weight: 700
+    .navbar-nav
+      &>li>a
+        color: $menu-text-color
+        text-transform: uppercase
+        +transition(0.3s ease-in-out)
+        &:hover
+          color: darken($menu-text-color, 60%)
+          background: rgba(255,255,255,1)
+      .active>a
+        color: darken($menu-text-color, 20%)
+        background: transparent
+  .jumbotron-box
+    height: calc(100vh - 130px)
+    display: flex
+    justify-content: center
+    align-items: center
+    .jumbotron-content
+      margin: 0 auto
+      width: 900px
+      max-width: 90%
+      color: white
+      text-align: center
+      h1
+        text-transform: uppercase
+        margin-bottom: $divider
+        font-weight: 700
+        font-family: $font-secondary
+/* FEATURES */
+#features
+  .row
+    margin: $divider*2 0
+.feature
+  text-align: center
+  padding: $divider
+  border: 1px solid transparent
+  .feature-heading
+    text-transform: uppercase
+    margin: $divider 0
+    font-weight: 700
+  &:hover
+    border-color: lighten($ab-violet, 30%)
+    background-color: lighten($ab-grey, 20%)
+    box-shadow: 2px 2px 10px lighten($ab-violet, 30%)
+
+/* WORKS */
+#works
+  [class*="col-"]
+    height: 350px
+    padding: 0
+    position: relative
+    overflow: hidden
+    &:hover
+      .layer
+        visibility: visible
+  .layer
+    position: absolute
+    @extend %wh100
+    background: rgba(232, 69, 69, 0.9)
+    visibility: hidden
+    color: white
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    .project-name
+      font-size: 16px
+      text-transform: uppercase
+      &>a
+        line-height: 24px
+        font-weight: 700
+        color: white
+        +transition(font-size 0.4s ease-in-out)
+        &:hover
+          font-size: 1.2em
+          text-decoration: none
+  .image
+    img
+      min-width: 100%
+      min-height: 100%
+      width: auto
+      height: auto
+/* TEAM */
+#team
+  padding: $divider*3 0
+  .employee
+    margin-bottom: $divider
+  .team-photo
+    text-align: center
+    margin-bottom: $divider
+    img
+      display: inline-block
+  .team-name
+    font-size: 22px
+  .team-desc
+    margin-bottom: $divider/2
+  .team-position
+    text-transform: uppercase
+    font-size: 13px
+    color: $ab-red
+    margin-bottom: $divider/2
+    @extend .team-desc
+  .menu-social
+    @extend %social-media-menu
+/* CLIENTS */
+#testimonials
+  color: #ffffff
+  .row
+    background-color: $ab-violet
+  [class*="col-"]
+    padding: 0
+  .ab-stretch
+    position: relative
+    height: 400px
+    .client
+      width: 100%
+      display: none
+      position: absolute
+      flex-wrap: wrap
+      align-items: stretch
+      height: 100%
+
+      &.active
+        display: flex
+
+    .slide-control
+      position: absolute
+      bottom: 20px
+      left: calc(50% + 60px)
+      .controls
+        list-style-type: none
+        @extend %mp0
+        &>li
+          display: inline-block
+          &>a
+            display: block
+            width: 14px
+            height: 14px
+            line-height: 14px
+            background-color: rgba(255,255,255,0.3)
+            +border-radius(50%)
+            +transition(background .5s ease-in-out)
+            &:hover
+              background-color: rgba(255,255,255,1)
+          &.active
+            &>a
+              background-color: rgba(255,255,255,1)
+              &:hover
+                cursor: not-allowed
+.client-image
+  width: 50%
+  background:
+    position: center
+    size: cover
+[data-client="0"]
+  .client-image
+    background-image: url(../images/client1.jpg)
+[data-client="1"]
+  .client-image
+    background-image: url(../images/client2.jpg)
+[data-client="2"]
+  .client-image
+    background-image: url(../images/client3.jpg)
+[data-client="3"]
+  .client-image
+    background-image: url(../images/client4.jpg)
+[data-client="4"]
+  .client-image
+    background-image: url(../images/client5.jpg)
+[data-client="5"]
+  .client-image
+    background-image: url(../images/client6.jpg)
+.client-main
+  width: 50%
+  display: flex
+  flex-direction: column
+  padding: $divider*2
+  .client-cite
+    .ab-cite
+      max-width: 500px
+      padding: 0
+      border-left: none
+      p
+        font-family: $font-cite
+        font-style: italic
+        font-size: 32px
+        line-height: 38px
+      footer
+        text-transform: uppercase
+        font-weight: 700
+        font-size: 12px
+        color: #ffffff
+        cite
+          font-style: normal
+        &::before
+          content: ""
+/* DOWNLOAD */
+#download
+  padding: $divider*3 0
+  text-align: center
+  p
+    text-transform: uppercase
+    font-weight: 700
+  button
+    color: white
+/* BOTTOM */
+.bottom
+  padding: $divider 0
+  background: $bottom-bg
+  [class*="col-"]
+    padding: $divider
+  h3
+    color: white
+    text-transform: uppercase
+    font-size: 18px
+    font-weight: 700
+    margin-bottom: $divider
+  p
+    color: white
+    opacity: .5
+  .share
+    .share-social
+      @extend %social-media-menu
+      li
+        border-color: white
+        a
+          color: white
+        &.facebook,
+        &.twitter,
+        &.linkedin
+          &:hover
+            border-color: white
+            background-color: white
+/* FOOTER */
+.footer
+  padding: $divider 0
+  background: $footer-bg
+  color: $footer-color
+  .fa-heart
+    color: $ab-red
+    margin: 0 5px
+  .author
+    color: white
+    &:hover
+      cursor: pointer
+  [class*="col-"]
+    position: relative
+    .gotop
+      position: absolute
+      top: 50%
+      right: 10px
+      +translate(0, -50%)
+      a
+        display: block
+        color: white
+        +transition(0.4s)
+
+        &:hover
+          color: $ab-red
+          padding-bottom: 15px
+
+/* RWD */
+// Tablets
+@media #{$tablets}
+  .navbar-brand
+    position: absolute
+    +scale(0.7, 0.7)
+  #testimonials
+    .ab-stretch
+      flex-direction: column
+      height: 800px
+      .slide-control
+        left: 60px
+    .client-image, .client-main
+      width: 100%
+    .client-image
+      height: 400px
