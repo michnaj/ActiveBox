@@ -7,4 +7,4 @@
 
 **Source file**:
 
-![alt text](/sourceimg/activebox.jpg "Ellipsis - Source psd file")
+![alt text](/sourceimg/activebox.jpg "Activebox - Source psd file")
